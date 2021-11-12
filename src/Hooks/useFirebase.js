@@ -41,13 +41,15 @@ const useFirebase = () => {
       })
       .finally(() => setIsLoadding(false));
   };
-  const login = (email, password) => {
+  const login = (email, password, history, location) => {
     setIsLoadding(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
+        setLoginError("");
+        const destination = location?.state?.from || "/";
         const user = userCredential.user;
         setUser(user);
+        history.replace(destination);
       })
       .catch((error) => {
         setLoginError(error.message);

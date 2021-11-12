@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Navigation from "../Shared/Navigation/Navigation";
 
 const Login = () => {
+  const location = useLocation();
+  const history = useHistory();
   const { login } = useAuth();
   const [loginCredential, setLoginCredential] = useState({});
   const handleOnBlur = (e) => {
@@ -16,7 +18,7 @@ const Login = () => {
     setLoginCredential(userCredential);
   };
   const handleLogin = (e) => {
-    login(loginCredential.email, loginCredential.password);
+    login(loginCredential.email, loginCredential.password, history, location);
     e.preventDefault();
   };
   return (

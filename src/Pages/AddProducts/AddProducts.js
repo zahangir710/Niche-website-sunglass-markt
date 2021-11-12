@@ -31,8 +31,8 @@ const AddProducts = () => {
       .then((data) => {
         if (data.insertedId) {
           alert("Product Successfully Added");
-          //   formRef.current.reset();
-          //   setProduct({});
+            formRef.current.reset();
+            setProduct({});
         }
       });
 
