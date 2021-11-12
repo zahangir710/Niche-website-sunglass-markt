@@ -1,0 +1,10 @@
+.cart-container{
+    display: flex;
+}
+
+.map-container{
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 35px;
+}

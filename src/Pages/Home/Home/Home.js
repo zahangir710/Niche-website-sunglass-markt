@@ -5,6 +5,7 @@ import Products from "../../Products/Products";
 import Navigation from "../../Shared/Navigation/Navigation";
 import HomeBanner from "../HomeBanner/HomeBanner";
 import "./Home.css";
+import Reviews from "./Reviews/Reviews";
 
 const Home = () => {
   const [loadProduct, setLoadProduct] = useState([]);
@@ -30,6 +31,7 @@ const Home = () => {
           </Button>
         </Link>
       </div>
+      <Reviews></Reviews>
     </div>
   );
 };

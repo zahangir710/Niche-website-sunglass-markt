@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Badge, Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import logo from "../../../images/android-chrome-192x192.png";
@@ -24,6 +24,11 @@ const Navigation = () => {
             <Nav.Link className="fw-bold" as={Link} to="/explore">
               Explore
             </Nav.Link>
+            {user.email && (
+              <Nav.Link className="fw-bold" as={Link} to="/dashboard">
+                Dashboard
+              </Nav.Link>
+            )}
           </Nav>
           <Nav>
             {!user.email ? (
@@ -40,11 +45,18 @@ const Navigation = () => {
                 Logout
               </Nav.Link>
             )}
+
             {user.email && (
               <Nav.Link className="fw-bold" as={Link} eventKey={2} to="/">
-                {user?.photoURL} {user?.displayName}
+                {user?.displayName}
               </Nav.Link>
             )}
+            <Link to="/cart">
+              <Button className="ms-3" variant="warning">
+                Cart <Badge bg="secondary"></Badge>
+                <span className="visually-hidden">Added Products</span>
+              </Button>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

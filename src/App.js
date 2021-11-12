@@ -8,6 +8,8 @@ import Registration from "./Pages/Registration/Registration";
 import Explore from "./Pages/Explore/Explore";
 import AuthProvider from "./Context/AuthProvider";
 import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
+import Dashboard from "./Pages/Dashboard/DashBoard/Dashboard";
+import Cart from "./Pages/Cart/Cart";
 
 function App() {
   return (
@@ -26,8 +28,14 @@ function App() {
           <Route path="/registration">
             <Registration></Registration>
           </Route>
-          <PrivateRoute path="/explore">
+          <Route path="/explore">
             <Explore></Explore>
+          </Route>
+          <PrivateRoute path="/cart">
+            <Cart></Cart>
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard">
+            <Dashboard></Dashboard>
           </PrivateRoute>
         </Switch>
       </Router>

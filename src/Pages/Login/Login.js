@@ -14,7 +14,6 @@ const Login = () => {
     const value = e.target.value;
     const userCredential = { ...loginCredential };
     userCredential[field] = value;
-    console.log(userCredential);
     setLoginCredential(userCredential);
   };
   const handleLogin = (e) => {

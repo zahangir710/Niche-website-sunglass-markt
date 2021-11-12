@@ -6,9 +6,10 @@ import useAuth from "../../Hooks/useAuth";
 
 const Registration = () => {
   const history = useHistory();
-  const { createUser } = useAuth();
+  const { createUser, loginError, setLoginError } = useAuth();
   const [registeredUser, setRegisteredUser] = useState("");
   const handleOnBlur = (e) => {
+    setLoginError("");
     const field = e.target.name;
     const value = e.target.value;
     const newUser = { ...registeredUser };
@@ -87,6 +88,7 @@ const Registration = () => {
                 </small>
               </Link>
               <br />
+              <p className="text-danger my-3">{loginError}</p>
               <Button
                 onClick={handleregister}
                 className="mt-3"
