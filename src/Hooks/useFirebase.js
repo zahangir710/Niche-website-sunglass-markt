@@ -15,100 +15,107 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoadding, setIsLoadding] = useState(true);
   const [loginError, setLoginError] = useState("");
+  const [admin, setAdmin] = useState(false);
 
-const createUser = (email, password, history, name) => {
-  setIsLoadding(true);
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const newUser = { email, displayName: name };
-      // send data to db
-      sendUserToDB(newUser);
+  const createUser = (email, password, history, name) => {
+    setIsLoadding(true);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const newUser = { email, displayName: name };
+        // send data to db
+        sendUserToDB(newUser);
 
-      setUser(newUser);
-      setLoginError("");
+        setUser(newUser);
+        setLoginError("");
 
-      // send name to firebase
-      updateProfile(auth.currentUser, {
-        displayName: name,
-      })
-        .then(() => {
-          // Profile updated!
+        // send name to firebase
+        updateProfile(auth.currentUser, {
+          displayName: name,
         })
-        .catch((error) => {
-          setLoginError(error.message);
-        });
+          .then(() => {
+            // Profile updated!
+          })
+          .catch((error) => {
+            setLoginError(error.message);
+          });
 
-      history.replace("/home");
+        history.replace("/home");
+      })
+      .catch((error) => {
+        setLoginError(error.message);
+        // ..
+      })
+      .finally(() => setIsLoadding(false));
+  };
+  const login = (email, password, history, location) => {
+    setIsLoadding(true);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        setLoginError("");
+        const destination = location?.state?.from || "/";
+        const user = userCredential.user;
+        setUser(user);
+        history.replace(destination);
+      })
+      .catch((error) => {
+        setLoginError(error.message);
+      })
+      .finally(() => {
+        setIsLoadding(false);
+      });
+  };
+  //function for Storing user Data to BD
+  const sendUserToDB = (user) => {
+    const storeUesr = { name: user.displayName, email: user.email };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(storeUesr),
     })
-    .catch((error) => {
-      setLoginError(error.message);
-      // ..
-    })
-    .finally(() => setIsLoadding(false));
-};
-const login = (email, password, history, location) => {
-  setIsLoadding(true);
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      setLoginError("");
-      const destination = location?.state?.from || "/";
-      const user = userCredential.user;
-      setUser(user);
-      history.replace(destination);
-    })
-    .catch((error) => {
-      setLoginError(error.message);
-    })
-    .finally(() => {
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoadding(true);
+      if (user) {
+        setUser(user);
+      } else {
+        setUser({});
+      }
       setIsLoadding(false);
     });
-};
-//function for Storing user Data to BD
-const sendUserToDB = (user) => {
-  const storeUesr = { name: user.displayName, email: user.email };
-  fetch("http://localhost:5000/users", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(storeUesr),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    });
-};
+    return unsubscribe;
+  }, []);
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        setLoginError(error.message);
+      });
+  };
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data.admin));
+  }, [user.email]);
 
-useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
-    setIsLoadding(true);
-    if (user) {
-      setUser(user);
-    } else {
-      setUser({});
-    }
-    setIsLoadding(false);
-  });
-  return unsubscribe;
-}, []);
-const logout = () => {
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-    })
-    .catch((error) => {
-      setLoginError(error.message);
-    });
-};
-
-return {
-  createUser,
-  loginError,
-  setLoginError,
-  user,
-  isLoadding,
-  login,
-  logout,
-};
+  return {
+    createUser,
+    loginError,
+    setLoginError,
+    user,
+    isLoadding,
+    login,
+    logout,
+    admin,
+  };
 };
 export default useFirebase;

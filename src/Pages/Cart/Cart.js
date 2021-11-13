@@ -29,7 +29,7 @@ const Cart = () => {
   }
   let delivery;
   total > 0 ? (delivery = 5) : (delivery = 0);
-
+  const grandTotal = total + delivery;
   const handleRemove = (id) => {
     fetch(`http://localhost:5000/cart/${id}`, {
       method: "DELETE",
@@ -53,14 +53,22 @@ const Cart = () => {
     setOrderInfo(updatedOrderInfo);
   };
   const handleOrder = (e) => {
-    const orderDetails = { ...cart, ...orderInfo };
-    console.log(orderDetails);
+    console.log(cart);
+    const newCart = { cart, ...orderInfo };
+    newCart["email"] = user.email;
+    newCart["status"] = "Pending";
+    newCart["total"] = total;
+    newCart["grandTotal"] = grandTotal.toFixed(2);
+    newCart["delivery"] = delivery;
+
+    console.log(newCart);
+
     fetch("http://localhost:5000/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(orderDetails),
+      body: JSON.stringify(newCart),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -101,8 +109,9 @@ const Cart = () => {
           <div className="ms-5">
             <h4 className="mb-4">Cart Details</h4>
             <p>Total items: {cart.length}</p>
+            <p>Total Price: {total.toFixed(2)}</p>
             <p>Delivery fees: ${delivery}</p>
-            <p>Total: ${total.toFixed(2)}</p>
+            <p>Grand Total: ${grandTotal.toFixed(2)}</p>
             {!toggle ? (
               <Button onClick={toggler} variant="warning">
                 Proceed to Checkout
