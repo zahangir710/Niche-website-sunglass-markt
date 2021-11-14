@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import "./MyOrders.css";
 
@@ -10,7 +11,6 @@ const MyOrders = () => {
     fetch(`http://localhost:5000/orders/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setOrders(data);
       });
   }, [user.email]);
@@ -33,6 +33,7 @@ const MyOrders = () => {
               {item.CustomerName ? item.CustomerName : user.displayName}
             </h6>
             <h6>Total items Aggregate: ${item.total}</h6>
+            <h6>Delivery: ${item.delivery}</h6>
 
             <h6 className="">
               Grand Total: $
@@ -47,11 +48,17 @@ const MyOrders = () => {
               </Button>
             )}
             {item.cart.map((c, i) => (
-              <div>
+              <div className="mb-5">
                 <div key={i}>
                   <img className="w-75" src={c.img} alt="" />
-                  <p>{c.name}</p>
-                  <p>Price: {c.price}</p>
+                  <p>
+                    {c.name} || Price: {c.price}
+                  </p>
+                  <Link to={`writereviews/${c.name}`}>
+                    <Button className="mb-5" variant="warning">
+                      Write a Review
+                    </Button>
+                  </Link>
                 </div>
               </div>
             ))}

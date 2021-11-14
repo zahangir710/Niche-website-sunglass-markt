@@ -11,7 +11,7 @@ const DashboardNav = () => {
   return (
     <Navbar bg="warning" expand={false}>
       <Container fluid>
-        <Navbar.Brand className="fs-1" as={Link} to="">
+        <Navbar.Brand className="fs-1" as={Link} to="/dashboard">
           Dashboard
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
@@ -39,7 +39,7 @@ const DashboardNav = () => {
                   Manage Orders
                 </Nav.Link>
               ) : (
-                <Nav.Link className="fs-3 text-dark" as={Link} to="/myorders">
+                <Nav.Link className="fs-3 text-dark" as={Link} to="/dashboard">
                   My Orders
                 </Nav.Link>
               )}

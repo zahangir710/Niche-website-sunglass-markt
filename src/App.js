@@ -10,6 +10,7 @@ import AuthProvider from "./Context/AuthProvider";
 import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
 import Dashboard from "./Pages/Dashboard/DashBoard/Dashboard";
 import Cart from "./Pages/Cart/Cart";
+import WriteReviews from "./Pages/Dashboard/WriteReviews/WriteReviews";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
+          </PrivateRoute>
+          <PrivateRoute path="/writereviews/:productId">
+            <WriteReviews></WriteReviews>
           </PrivateRoute>
         </Switch>
       </Router>
