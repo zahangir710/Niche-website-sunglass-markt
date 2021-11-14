@@ -9,19 +9,24 @@ const Products = (props) => {
   const handleAddToCart = (product) => {
     const { _id, ...addedProduct } = product;
     addedProduct["email"] = user.email;
-    fetch("http://localhost:5000/cart", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addedProduct),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          alert("Added to the Cart");
-        }
-      });
+    if (!user.email) {
+      alert("Please Login/Register first");
+    } else {
+      fetch("http://localhost:5000/cart", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addedProduct),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            alert("Added to the Cart");
+          }
+        });
+    }
+    
   };
   return (
     <Card className="text-center">

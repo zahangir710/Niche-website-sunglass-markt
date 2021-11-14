@@ -3,6 +3,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import CartItem from "../CartItem/CartItem";
+import Footer from "../Footer/Footer";
 import Navigation from "../Shared/Navigation/Navigation";
 import "./Cart.css";
 
@@ -89,7 +90,7 @@ const Cart = () => {
       <Navigation></Navigation>
       <h3 className="text-center my-5">Review your Orders</h3>
       {cart.length < 1 ? (
-        <div className="text-center">
+        <div className="text-center empty-cart">
           <h5 className="mb-4">You have nothing in Cart yet</h5>
           <Link to="/explore">
             <Button variant="warning">Explore Products</Button>
@@ -165,6 +166,7 @@ const Cart = () => {
           </div>
         </Container>
       )}
+      <Footer></Footer>
     </div>
   );
 };

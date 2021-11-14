@@ -11,6 +11,7 @@ import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
 import Dashboard from "./Pages/Dashboard/DashBoard/Dashboard";
 import Cart from "./Pages/Cart/Cart";
 import WriteReviews from "./Pages/Dashboard/WriteReviews/WriteReviews";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           <PrivateRoute path="/writereviews/:productId">
             <WriteReviews></WriteReviews>
           </PrivateRoute>
+          <Route path="*">
+            <NotFound></NotFound>
+          </Route>
         </Switch>
       </Router>
     </AuthProvider>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Footer from "../../Footer/Footer";
 import Products from "../../Products/Products";
 import Navigation from "../../Shared/Navigation/Navigation";
 import AllReviews from "../AllReviews/AllReviews";
@@ -32,6 +33,7 @@ const Home = () => {
         </Link>
       </div>
       <AllReviews></AllReviews>
+      <Footer></Footer>
     </div>
   );
 };

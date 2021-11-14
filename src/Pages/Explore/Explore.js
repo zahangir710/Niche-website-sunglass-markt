@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Footer from "../Footer/Footer";
 import Products from "../Products/Products";
 import Navigation from "../Shared/Navigation/Navigation";
 
@@ -18,6 +19,7 @@ const Explore = () => {
           <Products key={product._id} product={product}></Products>
         ))}
       </div>
+      <Footer></Footer>
     </div>
   );
 };

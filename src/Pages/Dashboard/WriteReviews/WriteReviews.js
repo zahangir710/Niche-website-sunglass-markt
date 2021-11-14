@@ -8,25 +8,24 @@ import {
   FloatingLabel,
   Form,
   Row,
-  Spinner,
 } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import DashboardNav from "../DashboardNav/DashboardNav";
+import Footer from "../../Footer/Footer";
+import "./WriteReviews.css";
 
 const WriteReviews = () => {
   const { productId } = useParams();
   const { user } = useAuth();
   const [product, setProduct] = useState({});
-  const [loadding, setLoadding] = useState(true);
+
   useEffect(() => {
-    setLoadding(true);
     fetch(`http://localhost:5000/products/${productId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setProduct(data);
-        setLoadding(false);
       });
   }, [productId]);
   const [review, setReview] = useState({});
@@ -60,7 +59,6 @@ const WriteReviews = () => {
             alert("Review Posted Successfully");
             setPostConfirmation(true);
             setProduct({});
-            setLoadding(false);
           }
         });
     } else {
@@ -68,25 +66,20 @@ const WriteReviews = () => {
     }
     e.preventDefault();
   };
-  if (loadding) {
-    return (
-      <div className="container text-center">
-        <Spinner animation="border" variant="warning" />
-        <p>Loading...</p>
-      </div>
-    );
-  }
   if (postConfirmation) {
     return (
-      <div className="container mt-5 text-center">
-        <AiOutlineLike className="fs-1 my-5" />
-        <h3 className="text-success mb-5">Thank you for your review</h3>
-        <Link to="/home">
-          <small>Go to home</small>
-        </Link>
-        <p className="mt-3">or</p>
-        <Link to="/dashboard">Review another product</Link>
-      </div>
+      <>
+        <div className="container mt-5 text-center place-footer">
+          <AiOutlineLike className="fs-1 my-5" />
+          <h3 className="text-success mb-5">Thank you for your review</h3>
+          <Link to="/home">
+            <small>Go to home</small>
+          </Link>
+          <p className="mt-3">or</p>
+          <Link to="/dashboard">Review another product</Link>
+        </div>
+        <Footer></Footer>
+      </>
     );
   }
   return (
@@ -148,6 +141,7 @@ const WriteReviews = () => {
           </Col>
         </Row>
       </Container>
+      <Footer></Footer>
     </>
   );
 };
