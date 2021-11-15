@@ -8,7 +8,7 @@ const MyOrders = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/orders/${user.email}`)
+    fetch(`https://hidden-refuge-12669.herokuapp.com/orders/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -19,7 +19,7 @@ const MyOrders = () => {
     const proceed = window.confirm("Confirm Cancel order?");
     if (proceed) {
       console.log(id);
-      fetch(`http://localhost:5000/orders/${id}`, {
+      fetch(`https://hidden-refuge-12669.herokuapp.com/orders/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

@@ -21,7 +21,7 @@ const WriteReviews = () => {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${productId}`)
+    fetch(`https://hidden-refuge-12669.herokuapp.com/products/${productId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -46,7 +46,7 @@ const WriteReviews = () => {
     review["category"] = product.category;
     console.log(review);
     if (review.review.length > 0 && review?.rating?.length > 0) {
-      fetch("http://localhost:5000/review", {
+      fetch("https://hidden-refuge-12669.herokuapp.com/review", {
         method: "POST",
         headers: {
           "content-type": "application/json",

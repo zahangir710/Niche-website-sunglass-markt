@@ -4,7 +4,7 @@ import { Col, Container, Dropdown, Row, Table } from "react-bootstrap";
 const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("https://hidden-refuge-12669.herokuapp.com/orders")
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -15,7 +15,7 @@ const ManageOrders = () => {
     console.log(id);
     const status = "Shipped";
     const updatedStatus = { status };
-    fetch(`http://localhost:5000/orders/${id}`, {
+    fetch(`https://hidden-refuge-12669.herokuapp.com/orders/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

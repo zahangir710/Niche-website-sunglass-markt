@@ -7,7 +7,7 @@ const ManageProducts = () => {
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/admin/products")
+    fetch("https://hidden-refuge-12669.herokuapp.com/admin/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -17,7 +17,7 @@ const ManageProducts = () => {
     console.log(id);
     const proceed = window.confirm("Confirm Delete?");
     if (proceed) {
-      fetch(`http://localhost:5000/admin/products/${id}`, {
+      fetch(`https://hidden-refuge-12669.herokuapp.com/admin/products/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

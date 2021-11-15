@@ -21,7 +21,7 @@ const AddProducts = () => {
     setProduct(newProduct);
   };
   const handleAddProduct = (e) => {
-    fetch("http://localhost:5000/products", {
+    fetch("https://hidden-refuge-12669.herokuapp.com/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

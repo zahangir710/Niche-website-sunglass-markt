@@ -14,7 +14,7 @@ const Home = () => {
   const { user } = useAuth();
   const [loadProduct, setLoadProduct] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/home/products")
+    fetch("https://hidden-refuge-12669.herokuapp.com/home/products")
       .then((res) => res.json())
       .then((data) => setLoadProduct(data));
   }, []);
@@ -24,7 +24,7 @@ const Home = () => {
     if (!user.email) {
       alert("Please Login/Register first");
     } else {
-      fetch("http://localhost:5000/cart", {
+      fetch("https://hidden-refuge-12669.herokuapp.com/cart", {
         method: "POST",
         headers: {
           "content-type": "application/json",

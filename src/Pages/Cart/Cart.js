@@ -18,7 +18,7 @@ const Cart = () => {
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/cart?email=${user.email}`)
+    fetch(`https://hidden-refuge-12669.herokuapp.com/cart?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCart(data);
@@ -34,7 +34,7 @@ const Cart = () => {
   const handleRemove = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      fetch(`http://localhost:5000/cart/${id}`, {
+      fetch(`https://hidden-refuge-12669.herokuapp.com/cart/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -67,7 +67,7 @@ const Cart = () => {
       newCart["grandTotal"] = grandTotal.toFixed(2);
       newCart["delivery"] = delivery;
 
-      fetch("http://localhost:5000/orders", {
+      fetch("https://hidden-refuge-12669.herokuapp.com/orders", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -79,9 +79,12 @@ const Cart = () => {
           if (data.insertedId) {
             alert("Order Placed Successfully");
             setCart([]);
-            fetch(`http://localhost:5000/cart?email=${user.email}`, {
-              method: "DELETE",
-            })
+            fetch(
+              `https://hidden-refuge-12669.herokuapp.com/cart?email=${user.email}`,
+              {
+                method: "DELETE",
+              }
+            )
               .then((res) => res.json())
               .then((data) => {});
           }
