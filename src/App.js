@@ -12,6 +12,11 @@ import Dashboard from "./Pages/Dashboard/DashBoard/Dashboard";
 import Cart from "./Pages/Cart/Cart";
 import WriteReviews from "./Pages/Dashboard/WriteReviews/WriteReviews";
 import NotFound from "./Pages/NotFound/NotFound";
+import MakeAdmin from "./Pages/Dashboard/Admin/MakeAdmin/MakeAdmin";
+import ManageProducts from "./Pages/Dashboard/Admin/ManageProducts/ManageProducts";
+import Payment from "./Pages/Dashboard/Payment/Payment";
+import MyReviews from "./Pages/Dashboard/MyReviews/MyReviews";
+import AddProducts from "./Pages/AddProducts/AddProducts";
 
 function App() {
   return (
@@ -39,8 +44,23 @@ function App() {
           <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
           </PrivateRoute>
+          <PrivateRoute path="/makeadmin">
+            <MakeAdmin></MakeAdmin>
+          </PrivateRoute>
+          <PrivateRoute path="/manageproducts">
+            <ManageProducts></ManageProducts>
+          </PrivateRoute>
           <PrivateRoute path="/writereviews/:productId">
             <WriteReviews></WriteReviews>
+          </PrivateRoute>
+          <PrivateRoute path="/payment">
+            <Payment></Payment>
+          </PrivateRoute>
+          <PrivateRoute path="/myreviews">
+            <MyReviews></MyReviews>
+          </PrivateRoute>
+          <PrivateRoute path="/addproduct">
+            <AddProducts></AddProducts>
           </PrivateRoute>
           <Route path="*">
             <NotFound></NotFound>

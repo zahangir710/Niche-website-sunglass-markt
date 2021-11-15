@@ -15,8 +15,26 @@ const MyOrders = () => {
       });
   }, [user.email]);
   const totalOrders = orders.length;
+  const handleCancleOrder = (id) => {
+    const proceed = window.confirm("Confirm Cancel order?");
+    if (proceed) {
+      console.log(id);
+      fetch(`http://localhost:5000/orders/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount) {
+            alert("successfully cancelled Order");
+            const newOrders = orders.filter((order) => order._id !== id);
+            setOrders(newOrders);
+          }
+        });
+    }
+  };
   return (
     <div className="container">
+      <h2 className="text-center my-5">My Orders</h2>
       <h4 className="text-center my-5">
         Number of Orders Placed: {totalOrders}
       </h4>
@@ -43,7 +61,11 @@ const MyOrders = () => {
               Order Status: <span className="text-danger">{item.status}</span>
             </h6>
             {item.status === "Pending" && (
-              <Button className="mb-5" variant="warning">
+              <Button
+                onClick={() => handleCancleOrder(item._id)}
+                className="mb-5"
+                variant="warning"
+              >
                 Cancle Order
               </Button>
             )}

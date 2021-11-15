@@ -31,11 +31,7 @@ const DashboardNav = () => {
                 Home
               </Nav.Link>
               {admin ? (
-                <Nav.Link
-                  className="fs-3 text-dark"
-                  as={Link}
-                  to="/manageorders"
-                >
+                <Nav.Link className="fs-3 text-dark" as={Link} to="/dashboard">
                   Manage Orders
                 </Nav.Link>
               ) : (
@@ -65,9 +61,20 @@ const DashboardNav = () => {
                   Make Admin
                 </Nav.Link>
               )}
-              <Button onClick={handlelogout} className="mt-5" variant="warning">
-                Logout
-              </Button>
+              {admin && (
+                <Nav.Link className="fs-3 text-dark" as={Link} to="/addproduct">
+                  Add Product
+                </Nav.Link>
+              )}
+              <Link to="/home">
+                <Button
+                  onClick={handlelogout}
+                  className="mt-5"
+                  variant="warning"
+                >
+                  Logout
+                </Button>
+              </Link>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

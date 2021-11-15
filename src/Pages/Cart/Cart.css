@@ -1,5 +1,6 @@
 .cart-container{
     display: flex;
+    flex-direction: row;
 }
 
 .map-container{
@@ -11,3 +12,12 @@
 .empty-cart{
     margin-bottom: 280px;
 }
+@media screen and (max-width: 500px) {
+    .map-container{
+        grid-template-columns: 1fr;
+    }
+    .cart-container{
+        
+        flex-direction: column;
+    }
+  }

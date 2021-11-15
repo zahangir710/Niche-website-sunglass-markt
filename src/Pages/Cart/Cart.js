@@ -32,58 +32,62 @@ const Cart = () => {
   total > 0 ? (delivery = 5) : (delivery = 0);
   const grandTotal = total + delivery;
   const handleRemove = (id) => {
-    fetch(`http://localhost:5000/cart/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.deletedCount > 0) {
-          alert("Successfully Removed from Cart");
-          const newCart = cart.filter((newProducts) => newProducts._id !== id);
-          setCart(newCart);
-        }
-      });
+    const proceed = window.confirm("Are you sure?");
+    if (proceed) {
+      fetch(`http://localhost:5000/cart/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("Successfully Removed from Cart");
+            const newCart = cart.filter(
+              (newProducts) => newProducts._id !== id
+            );
+            setCart(newCart);
+          }
+        });
+    }
   };
   const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
     const updatedOrderInfo = { ...orderInfo };
     updatedOrderInfo[field] = value;
-    console.log(updatedOrderInfo);
     setOrderInfo(updatedOrderInfo);
   };
   const handleOrder = (e) => {
-    console.log(cart);
-    const newCart = { cart, ...orderInfo };
-    newCart["email"] = user.email;
-    newCart["status"] = "Pending";
-    newCart["total"] = total;
-    newCart["grandTotal"] = grandTotal.toFixed(2);
-    newCart["delivery"] = delivery;
+    const proceed = window.confirm("Confirm Order?");
+    if (proceed) {
+      const newCart = { cart, ...orderInfo };
+      newCart["email"] = user.email;
+      newCart["status"] = "Pending";
+      newCart["total"] = total;
+      newCart["grandTotal"] = grandTotal.toFixed(2);
+      newCart["delivery"] = delivery;
 
-    console.log(newCart);
-
-    fetch("http://localhost:5000/orders", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newCart),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          alert("Order Placed Successfully");
-          setCart([]);
-          fetch(`http://localhost:5000/cart?email=${user.email}`, {
-            method: "DELETE",
-          })
-            .then((res) => res.json())
-            .then((data) => {});
-        }
-      });
-    e.preventDefault();
+      fetch("http://localhost:5000/orders", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newCart),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            alert("Order Placed Successfully");
+            setCart([]);
+            fetch(`http://localhost:5000/cart?email=${user.email}`, {
+              method: "DELETE",
+            })
+              .then((res) => res.json())
+              .then((data) => {});
+          }
+        });
+      e.preventDefault();
+    }
   };
   return (
     <div>
