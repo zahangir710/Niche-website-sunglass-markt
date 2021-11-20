@@ -7,7 +7,7 @@ const HomeBanner = () => {
       <Row>
         <Col>
           <h1 className="pt-5">Sunglass Markt</h1>
-          <p className="py-3">The Elegent Sunglasses you always wanted...</p>
+          <p className="py-3">The Elegent Sunglasses you always wanted.....</p>
         </Col>
       </Row>
     </Container>
