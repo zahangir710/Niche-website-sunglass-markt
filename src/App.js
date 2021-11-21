@@ -17,6 +17,7 @@ import ManageProducts from "./Pages/Dashboard/Admin/ManageProducts/ManageProduct
 import Payment from "./Pages/Dashboard/Payment/Payment";
 import MyReviews from "./Pages/Dashboard/MyReviews/MyReviews";
 import AddProducts from "./Pages/AddProducts/AddProducts";
+import SuccessfullyPosted from "./Pages/Dashboard/WriteReviews/SuccessfullyPosted";
 
 function App() {
   return (
@@ -61,6 +62,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/addproduct">
             <AddProducts></AddProducts>
+          </PrivateRoute>
+          <PrivateRoute path="/successfully_posted">
+            <SuccessfullyPosted></SuccessfullyPosted>
           </PrivateRoute>
           <Route path="*">
             <NotFound></NotFound>

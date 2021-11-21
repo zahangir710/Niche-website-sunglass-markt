@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineLike } from "react-icons/ai";
 import {
   Button,
   Card,
@@ -9,7 +8,7 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import DashboardNav from "../DashboardNav/DashboardNav";
 import Footer from "../../Footer/Footer";
@@ -67,20 +66,7 @@ const WriteReviews = () => {
     e.preventDefault();
   };
   if (postConfirmation) {
-    return (
-      <>
-        <div className="container mt-5 text-center place-footer">
-          <AiOutlineLike className="fs-1 my-5" />
-          <h3 className="text-success mb-5">Thank you for your review</h3>
-          <Link to="/home">
-            <small>Go to home</small>
-          </Link>
-          <p className="mt-3">or</p>
-          <Link to="/dashboard">Review another product</Link>
-        </div>
-        <Footer></Footer>
-      </>
-    );
+    return <Redirect to="/successfully_posted" />;
   }
   return (
     <>
