@@ -15,29 +15,32 @@ Using  MondoDB, React, Express, Node
 
 ### Addintional Libraries
 
-React Rating, React Router Dom
+React Rating, React Router Dom v5
 
 ### Project Details
+
 Functionality:
+
 Create User,
 User Login,
 Add to cart,
 Remove from cart,
-Place Order
+Place Order,
+View My Orders,
+Write product Review
 
 Different Acess Level between Admin and General user,
 
 Admin functionality:
+
 Make another admin,
-Manage all orders,
+Manage all orders (Change order status),
 Add product,
 Delete Product
 
-## Learn More
+## Firebase
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Firebase Authentication & Deploy
 
 ### Code Splitting
 
