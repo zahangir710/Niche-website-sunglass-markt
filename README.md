@@ -7,7 +7,7 @@ https://sunglass-markt.web.app
 
 ### Server-side Repository
 
-https://github.com/programming-hero-web-course-4/niche-website-server-side-zahangir710
+https://github.com/zahangir710/Niche-website-sunglass-markt-Server
 
 ### Full Stack Web App (MREN stack)
 
