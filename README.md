@@ -29,7 +29,7 @@ Place Order,
 View My Orders,
 Write product Review
 
-Different Acess Level between Admin and General user,
+Different Access Level between Admin and General user,
 
 Admin functionality:
 
