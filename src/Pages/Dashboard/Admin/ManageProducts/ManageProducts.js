@@ -7,7 +7,7 @@ const ManageProducts = () => {
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("https://hidden-refuge-12669.herokuapp.com/admin/products")
+    fetch("https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/admin/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -17,9 +17,12 @@ const ManageProducts = () => {
     console.log(id);
     const proceed = window.confirm("Confirm Delete?");
     if (proceed) {
-      fetch(`https://hidden-refuge-12669.herokuapp.com/admin/products/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/admin/products/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

@@ -13,7 +13,7 @@ const MakeAdmin = () => {
     const user = { email };
     const proceed = window.confirm("Confirm Creating Admin? ");
     if (proceed) {
-      fetch("https://hidden-refuge-12669.herokuapp.com/users/admin", {
+      fetch("https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/users/admin", {
         method: "PUT",
         headers: {
           "content-type": "application/json",

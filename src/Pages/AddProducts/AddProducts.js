@@ -21,7 +21,7 @@ const AddProducts = () => {
     setProduct(newProduct);
   };
   const handleAddProduct = (e) => {
-    fetch("https://hidden-refuge-12669.herokuapp.com/products", {
+    fetch("https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

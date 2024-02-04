@@ -18,7 +18,9 @@ const Cart = () => {
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
-    fetch(`https://hidden-refuge-12669.herokuapp.com/cart?email=${user.email}`)
+    fetch(
+      `https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/cart?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCart(data);
@@ -34,7 +36,7 @@ const Cart = () => {
   const handleRemove = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      fetch(`https://hidden-refuge-12669.herokuapp.com/cart/${id}`, {
+      fetch(`https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/cart/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -67,7 +69,7 @@ const Cart = () => {
       newCart["grandTotal"] = grandTotal.toFixed(2);
       newCart["delivery"] = delivery;
 
-      fetch("https://hidden-refuge-12669.herokuapp.com/orders", {
+      fetch("https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/orders", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -80,7 +82,7 @@ const Cart = () => {
             alert("Order Placed Successfully");
             setCart([]);
             fetch(
-              `https://hidden-refuge-12669.herokuapp.com/cart?email=${user.email}`,
+              `https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/cart?email=${user.email}`,
               {
                 method: "DELETE",
               }

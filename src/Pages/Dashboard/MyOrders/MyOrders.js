@@ -8,7 +8,9 @@ const MyOrders = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch(`https://hidden-refuge-12669.herokuapp.com/orders/${user.email}`)
+    fetch(
+      `https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/orders/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -19,7 +21,7 @@ const MyOrders = () => {
     const proceed = window.confirm("Confirm Cancel order?");
     if (proceed) {
       console.log(id);
-      fetch(`https://hidden-refuge-12669.herokuapp.com/orders/${id}`, {
+      fetch(`https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/orders/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

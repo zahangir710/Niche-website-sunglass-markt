@@ -9,7 +9,7 @@ const Explore = () => {
   const { user } = useAuth();
   const [loadProduct, setLoadProduct] = useState([]);
   useEffect(() => {
-    fetch("https://hidden-refuge-12669.herokuapp.com/products")
+    fetch("https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setLoadProduct(data));
   }, []);
@@ -20,7 +20,7 @@ const Explore = () => {
     if (!user.email) {
       alert("Please Login/Register first");
     } else {
-      fetch("https://hidden-refuge-12669.herokuapp.com/cart", {
+      fetch("https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/cart", {
         method: "POST",
         headers: {
           "content-type": "application/json",

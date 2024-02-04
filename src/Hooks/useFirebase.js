@@ -67,7 +67,7 @@ const useFirebase = () => {
   //function for Storing user Data to BD
   const sendUserToDB = (user) => {
     const storeUesr = { name: user.displayName, email: user.email };
-    fetch("https://hidden-refuge-12669.herokuapp.com/users", {
+    fetch("https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -102,7 +102,9 @@ const useFirebase = () => {
       });
   };
   useEffect(() => {
-    fetch(`https://hidden-refuge-12669.herokuapp.com/users/${user.email}`)
+    fetch(
+      `https://sunglass-markt-c5e4f9ab5a7f.herokuapp.com/users/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user.email]);
